@@ -1,8 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react'
-import axios from 'axios'
-import { appParams } from '@/lib/app-params'
 
-// простой mock вместо Base44
+// простой mock (без Base44)
 const db = {
   auth: {
     isAuthenticated: async () => false,
@@ -17,86 +15,37 @@ const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [isLoadingAuth, setIsLoadingAuth] = useState(true)
-  const [isLoadingPublicSettings, setIsLoadingPublicSettings] = useState(true)
+  const [isLoadingAuth, setIsLoadingAuth] = useState(false)
+  const [isLoadingPublicSettings, setIsLoadingPublicSettings] = useState(false)
   const [authError, setAuthError] = useState(null)
-  const [authChecked, setAuthChecked] = useState(false)
+  const [authChecked, setAuthChecked] = useState(true)
   const [appPublicSettings, setAppPublicSettings] = useState(null)
 
   useEffect(() => {
-    checkAppState()
+    init()
   }, [])
 
-  const checkAppState = async () => {
-    try {
-      setIsLoadingPublicSettings(true)
-      setAuthError(null)
-
-    
-      const appClient = axios.create({
-        baseURL: "/api/apps/public",
-        headers: {
-          'X-App-Id': appParams.appId
-        }
-      })
-
-      try {
-        const response = await appClient.get(
-          "/prod/public-settings/by-id/${appParams.appId}"
-        )
-
-        const publicSettings = response.data
-        setAppPublicSettings(publicSettings)
-
-        if (appParams.token) {
-          await checkUserAuth()
-        } else {
-          setIsLoadingAuth(false)
-          setIsAuthenticated(false)
-          setAuthChecked(true)
-        }
-
-        setIsLoadingPublicSettings(false)
-      } catch (appError) {
-        console.error('App state check failed:', appError)
-
-        setAuthError({
-          type: 'unknown',
-          message: appError.message || 'Failed to load app'
-        })
-
-        setIsLoadingPublicSettings(false)
-        setIsLoadingAuth(false)
-      }
-    } catch (error) {
-      console.error('Unexpected error:', error)
-
-      setAuthError({
-        type: 'unknown',
-        message: error.message || 'Unexpected error'
-      })
-
-      setIsLoadingPublicSettings(false)
-      setIsLoadingAuth(false)
-    }
-  }
-
-  const checkUserAuth = async () => {
+  // 🔥 полностью убрали API (оно у тебя не существует)
+  const init = async () => {
     try {
       setIsLoadingAuth(true)
 
       const currentUser = await db.auth.me()
 
       setUser(currentUser)
-      setIsAuthenticated(true)
-      setIsLoadingAuth(false)
+      setIsAuthenticated(!!currentUser)
       setAuthChecked(true)
-    } catch (error) {
-      console.error('User auth check failed:', error)
-
       setIsLoadingAuth(false)
+    } catch (error) {
+      console.error('Auth init error:', error)
+
       setIsAuthenticated(false)
       setAuthChecked(true)
+      setIsLoadingAuth(false)
+      setAuthError({
+        type: 'unknown',
+        message: error.message || 'Unexpected error'
+      })
     }
   }
 
@@ -120,9 +69,7 @@ export const AuthProvider = ({ children }) => {
         appPublicSettings,
         authChecked,
         logout,
-        navigateToLogin,
-        checkUserAuth,
-        checkAppState
+        navigateToLogin
       }}
     >
       {children}
