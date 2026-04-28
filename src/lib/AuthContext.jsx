@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
 
       try {
         const response = await appClient.get(
-          /prod/public-settings/by-id/${appParams.appId}
+          "/prod/public-settings/by-id/${appParams.appId}"
         )
 
         const publicSettings = response.data
@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
 
         setAuthError({
           type: 'unknown',
-          message: appError.message  'Failed to load app'
+          message: appError.message || 'Failed to load app'
         })
 
         setIsLoadingPublicSettings(false)
@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }) => {
 
       setAuthError({
         type: 'unknown',
-        message: error.message  'Unexpected error'
+        message: error.message || 'Unexpected error'
       })
 
       setIsLoadingPublicSettings(false)
