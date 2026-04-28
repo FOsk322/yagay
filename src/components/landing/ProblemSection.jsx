@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 
-const CHAOS_IMAGE = "https://media.db.com/images/public/69f0c47a69cd14aa00567cbb/564c0d77d_generated_0737972c.png";
+const CHAOS_IMAGE = "\public\images\buildings-city-sunset-5k-wb.jpg";
 
 export default function ProblemSection() {
   const ref = useRef(null);

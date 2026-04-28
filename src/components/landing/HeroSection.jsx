@@ -3,7 +3,7 @@ const db = globalThis.__B44_DB__ || { auth:{ isAuthenticated: async()=>false, me
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-const HERO_IMAGE = "https://media.db.com/images/public/69f0c47a69cd14aa00567cbb/cb3338de0_generated_3f746e49.png";
+const HERO_IMAGE = "\public\images\athlete.png";
 
 export default function HeroSection() {
   return (

@@ -63,7 +63,7 @@ export default function HowItWorksSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const MUSCLE_IMAGE = "https://media.db.com/images/public/69f0c47a69cd14aa00567cbb/23a7a8516_generated_6930c7d2.png";
+  const MUSCLE_IMAGE = "\public\images\muscle.png";
 
   return (
     <section id="process" ref={ref} className="py-24 md:py-40 px-6 md:px-12 relative">
