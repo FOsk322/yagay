@@ -70,7 +70,22 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 1.2 }}
             className="mt-16 flex gap-12"
           >
-    
+            <div>
+              <div className="font-mono text-2xl font-bold text-foreground">15min</div>
+              <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground mt-1">длина сессии</div>
+            </div>
+            <div className="w-px bg-border" />
+            <div>
+              <div className="font-mono text-2xl font-bold text-foreground">100%</div>
+              <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground mt-1">под тебя</div>
+            </div>
+            <div className="w-px bg-border" />
+            <div>
+              <div className="font-mono text-2xl font-bold text-foreground">0</div>
+              <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground mt-1">лишних действий</div>
+            </div>
+          </motion.div>
+        </div>
 
         {/* Right: Image */}
         <motion.div
