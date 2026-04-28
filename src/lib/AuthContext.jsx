@@ -32,9 +32,9 @@ export const AuthProvider = ({ children }) => {
       setIsLoadingPublicSettings(true)
       setAuthError(null)
 
-      // 🔥 заменили createAxiosClient → axios
+    
       const appClient = axios.create({
-        baseURL: /api/apps/public,
+        baseURL: "/api/apps/public",
         headers: {
           'X-App-Id': appParams.appId
         }
