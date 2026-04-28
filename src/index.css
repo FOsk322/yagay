@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 11% 97%;
+    --foreground: 0 0% 10%;
+    --card: 40 11% 97%;
+    --card-foreground: 0 0% 10%;
+    --popover: 40 11% 97%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 221 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 40 5% 92%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 40 5% 92%;
+    --muted-foreground: 40 3% 49%;
+    --accent: 221 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 40 5% 88%;
+    --input: 40 5% 88%;
+    --ring: 221 100% 50%;
+    --chart-1: 18 100% 50%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0rem;
+
+    --font-inter: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  .dark {
+    --background: 0 0% 6%;
+    --foreground: 40 11% 97%;
+    --card: 0 0% 8%;
+    --card-foreground: 40 11% 97%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 40 11% 97%;
+    --primary: 221 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 40 11% 97%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 40 3% 55%;
+    --accent: 221 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 18 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-inter;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: hsl(18, 100%, 50%);
+  color: white;
+}
